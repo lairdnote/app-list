@@ -78,7 +78,7 @@ const message = useMessage();
 const formRef = ref(null);
 console.log(refStore.fee.value);
 const tradePairtoRaw = toRaw(refStore.tradePair.value);
-const paycoin = ref("USD");
+const paycoin = ref("");
 
 const tradePairOptions = [];
 Object.keys(tradePairtoRaw).forEach((key) => {
