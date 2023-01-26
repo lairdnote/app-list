@@ -11,19 +11,15 @@
     >
       <n-form-item label="币种">
         <n-select
-          v-model:value="model.coin"
+          v-model:value="model.tradePair"
           placeholder="请选择"
           path="data.coin"
           :options="tradePairOptions"
+          @update:value="handleSelect"
         />
       </n-form-item>
       <n-form-item label="支付币种">
-        <n-select
-          v-model:value="model.paymethodCoin"
-          placeholder="USD"
-          path="data.paymethodCoin"
-          
-        />
+        <n-tag :bordered="false" type="success"> {{ paycoin }}</n-tag>
       </n-form-item>
       <n-form-item label="出售总量">
         <n-input
@@ -82,6 +78,8 @@ const message = useMessage();
 const formRef = ref(null);
 console.log(refStore.fee.value);
 const tradePairtoRaw = toRaw(refStore.tradePair.value);
+const paycoin = ref("USD");
+
 const tradePairOptions = [];
 Object.keys(tradePairtoRaw).forEach((key) => {
   console.log(key, tradePairtoRaw[key]);
@@ -120,6 +118,12 @@ const handleValidateClick = (e) => {
       message.error("Invalid");
     }
   });
+};
+
+const handleSelect = (e) => {
+  console.log(e);
+  const action = tradePairtoRaw[e].split("/");
+  paycoin.value = action[0];
 };
 </script>
 
