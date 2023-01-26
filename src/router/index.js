@@ -5,7 +5,7 @@ const router = createRouter({
   history: createWebHashHistory(import.meta.env.BASE_URL),
   routes: [
     {
-      path: '/home',
+      path: '/',
       name: 'layout',
       component: () => import('../components/layout/DefaultLayout.vue'),
       children: [
@@ -28,10 +28,10 @@ const router = createRouter({
         ,
 
         {
-          path: '/order',
-          name: 'order',
+          path: '/ads',
+          name: 'ads',
           props: true,
-          component: () => import('../views/OrderView.vue')
+          component: () => import('../views/AdsView.vue')
         }
       ]
     },
@@ -42,37 +42,25 @@ const router = createRouter({
       component: () => import('../views/LoginView.vue')
     },
     {
-      path: '/profile',
+      path: '/user',
       name: 'profile',
       component: () => import('../components/layout/ProfileLayout.vue'),
       children: [
         {
-          name: 'phome',
-          path: 'phome',
+          name: 'info',
+          path: '/',
           props: true,
           component: () => import('../views/ProfileHomeView.vue')
         },
         {
-          name: 'business',
-          path: 'business',
+          name: 'finace',
+          path: 'finace',
           props: true,
           component: () => import('../views/ProfileHomeView.vue')
         },
         {
-          name: 'pbuy',
-          path: 'pbuy',
-          props: true,
-          component: () => import('../views/ProfileHomeView.vue')
-        },
-        {
-          name: 'psell',
-          path: 'psell',
-          props: true,
-          component: () => import('../views/ProfileHomeView.vue')
-        },
-        {
-          name: 'porderlist',
-          path: 'porderlist',
+          name: 'order',
+          path: 'order',
           props: true,
           component: () => import('../views/ProfileHomeView.vue')
         },

@@ -22,7 +22,6 @@
  
 </template>
 
-
 <script setup>
 
 import BuyTableVue from '../components/BuyTable.vue';

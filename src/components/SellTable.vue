@@ -2,7 +2,7 @@
 
   <n-data-table
     :columns="sellcreateColumns()"
-    :data="selldata"
+    :data="data"
     :pagination="paginationReactive"
     
   />
@@ -19,13 +19,13 @@ const router = useRouter();
 
 
 const sellcreateColumns = () => [
-  {
+{
     title: "商家",
-    key: "orderName",
+    key: "machant",
   },
   {
     title: "币种",
-    key: "buyCoin",
+    key: "tradePair",
   },
   {
     title: "单价",
@@ -33,29 +33,27 @@ const sellcreateColumns = () => [
   },
   {
     title: "所在地",
-    key: "localtion",
+    key: "country",
   },
   {
     title: "限额",
-    key: "limitNum",
+    key: "limit",
   },
+
   {
     title: "支付方式",
-    key: "payMethod",
+    key: "payments",
   },
   {
-    title: "出售",
-    key: "action",
+    title: "购买",
+    key: "operationType",
     render(row) {
       return h(
         NButton,
         {
           type: "success",
           size: "small",
-          onClick: () =>
-            sendMail({
-              row,
-            }),
+          onClick: () => sendMail({ row }),
         },
         { default: () => "出售" }
       );
@@ -70,173 +68,42 @@ const sendMail = (args) => {
     path: "/trade",
     name: "trade",
     params: {
-      action: args.row.action,
-      buyCoin: args.row.buyCoin,
-      limitNum: args.row.limitNum,
-      localtion: args.row.localtion,
-      orderName: args.row.orderName,
-      payMethod: args.row.payMethod,
+      operationType: args.row.operationType,
+      tradePair: args.row.tradePair,
+      limit: args.row.limit,
+      country: args.row.country,
+      machant: args.row.machant,
+      payments: args.row.payments,
       price: args.row.price,
     },
   });
 };
 
 
-const selldata = [
+
+
+const data = [
   {
-    orderName: "abcd1",
-    buyCoin: "HDO",
-    price: "1.05",
-    localtion: "香港",
-    limitNum: "20-500USD",
-    payMethod: "paypal",
-    action: "出售",
-  },
-  {
-    orderName: "abcd2",
-    buyCoin: "HDO",
-    price: "1.05",
-    localtion: "香港",
-    limitNum: "20-500USD",
-    payMethod: "paypal",
-    action: "出售",
-  },
-  {
-    orderName: "abcd3",
-    buyCoin: "HDO",
-    price: "1.05",
-    localtion: "香港",
-    limitNum: "20-500USD",
-    payMethod: "paypal",
-    action: "出售",
-  },
-  {
-    orderName: "abcd4",
-    buyCoin: "HDO",
-    price: "1.05",
-    localtion: "香港",
-    limitNum: "20-500USD",
-    payMethod: "paypal",
-    action: "出售",
-  },
-  {
-    orderName: "abcd5",
-    buyCoin: "HDO",
-    price: "1.05",
-    localtion: "香港",
-    limitNum: "20-500USD",
-    payMethod: "paypal",
-    action: "出售",
-  },
-  {
-    orderName: "abcd6",
-    buyCoin: "HDO",
-    price: "1.05",
-    localtion: "香港",
-    limitNum: "20-500USD",
-    payMethod: "paypal",
-    action: "出售",
-  },
-  {
-    orderName: "abcd7",
-    buyCoin: "HDO",
-    price: "1.05",
-    localtion: "香港",
-    limitNum: "20-500USD",
-    payMethod: "paypal",
-    action: "出售",
-  },
-  {
-    orderName: "abcd8",
-    buyCoin: "HDO",
-    price: "1.05",
-    localtion: "香港",
-    limitNum: "20-500USD",
-    payMethod: "paypal",
-    action: "出售",
-  },
-  {
-    orderName: "abcd9",
-    buyCoin: "HDO",
-    price: "1.05",
-    localtion: "香港",
-    limitNum: "20-500USD",
-    payMethod: "paypal",
-    action: "出售",
-  },
-  {
-    orderName: "abcd10",
-    buyCoin: "HDO",
-    price: "1.05",
-    localtion: "香港",
-    limitNum: "20-500USD",
-    payMethod: "paypal",
-    action: "出售",
-  },
-  {
-    orderName: "abcd",
-    buyCoin: "HDO",
-    price: "1.05",
-    localtion: "香港",
-    limitNum: "20-500USD",
-    payMethod: "paypal",
-    action: "出售",
-  },
-  {
-    orderName: "abcd",
-    buyCoin: "HDO",
-    price: "1.05",
-    localtion: "香港",
-    limitNum: "20-500USD",
-    payMethod: "paypal",
-    action: "出售",
-  },
-  {
-    orderName: "abcd",
-    buyCoin: "HDO",
-    price: "1.05",
-    localtion: "香港",
-    limitNum: "20-500USD",
-    payMethod: "paypal",
-    action: "出售",
-  },
-  {
-    orderName: "abcd",
-    buyCoin: "HDO",
-    price: "1.05",
-    localtion: "香港",
-    limitNum: "20-500USD",
-    payMethod: "paypal",
-    action: "出售",
-  },
-  {
-    orderName: "abcd",
-    buyCoin: "HDO",
-    price: "1.05",
-    localtion: "香港",
-    limitNum: "20-500USD",
-    payMethod: "paypal",
-    action: "出售",
-  },
-  {
-    orderName: "abcd",
-    buyCoin: "HDO",
-    price: "1.05",
-    localtion: "香港",
-    limitNum: "20-500USD",
-    payMethod: "paypal",
-    action: "出售",
-  },
-  {
-    orderName: "abcd",
-    buyCoin: "HDO",
-    price: "1.05",
-    localtion: "香港",
-    limitNum: "20-500USD",
-    payMethod: "paypal",
-    action: "出售",
+    adsId: 1000000000023,
+    tradePair: 1,
+    machant: "abc@163.com",
+    country: 1,
+    price: 1.08,
+    limit: {
+      up: 200,
+      down: 100,
+    },
+    payments: [1, 2, 3],
+    operationType: 1,
+    datetime: "2022-01-16 18:09:35",
   },
 ];
+
+data.forEach(item => {
+  const l = item.limit
+  item.limit = l.up + " - "  + l.down
+});
+console.log(data.length);
 
 const paginationReactive = reactive({
   page: 1,
@@ -253,5 +120,5 @@ const paginationReactive = reactive({
     console.log("---2.2.2.2",paginationReactive.page)
   },
 });
-console.log(selldata.length)
+
 </script>

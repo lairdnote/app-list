@@ -9,7 +9,7 @@
   </n-config-provider>
 </template>
   
-  <script setup>
+<script setup>
 import { RouterLink, RouterView } from "vue-router";
 import { NConfigProvider, darkTheme } from "naive-ui";
 import HeaderNav from "../../components/HeaderNav.vue";

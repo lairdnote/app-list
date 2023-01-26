@@ -7,7 +7,7 @@
         <h5>所有交易都是以美元计算</h5>
 
         <n-input type="text" size="large" default-value="0" />
-        <h5>购买限额是 {{ provider.limitNum }} 请输入这个区间</h5>
+        <h5>购买限额是 {{ provider.limit }} 请输入这个区间</h5>
         <h4>单价</h4>
         <n-input
           type="text"

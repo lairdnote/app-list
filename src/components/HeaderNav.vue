@@ -16,7 +16,7 @@
               <n-button quaternary type="primary">首页</n-button></RouterLink
             >
 
-            <RouterLink to="/order">
+            <RouterLink to="/ads">
               <n-button quaternary type="primary"> 挂单 </n-button></RouterLink
             >
             <RouterLink to="/about">
