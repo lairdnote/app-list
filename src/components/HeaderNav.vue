@@ -71,11 +71,15 @@
 <script setup>
 import { h, defineComponent } from "vue";
 import { NIcon , useMessage} from "naive-ui";
+import { useRouter } from "vue-router";
+
 import {
   PersonCircleOutline as UserIcon,
   Pencil as EditIcon,
   LogOutOutline as LogoutIcon
 } from "@vicons/ionicons5";
+
+const router = useRouter()
 
 const message = useMessage()
 const renderIcon = (icon) => {
@@ -88,21 +92,22 @@ const renderIcon = (icon) => {
 const  options = [
         {
           label: "用户资料",
-          key: "profile",
+          key: "/profile",
           icon: renderIcon(UserIcon)
         },
         {
           label: "编辑用户资料",
-          key: "editProfile",
+          key: "/profile/user",
           icon: renderIcon(EditIcon)
         },
         {
           label: "退出登录",
-          key: "logout",
+          key: "/profile/logout",
           icon: renderIcon(LogoutIcon)
         }
       ]
 const handleSelect = (key) => {
   message.info(String(key));
+  router.push(key);
 }
 </script>

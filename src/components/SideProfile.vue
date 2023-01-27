@@ -10,14 +10,14 @@
         </div>
       </n-layout-sider>
 
-      <!-- <ContentSide />
-        -->
+      <ContentUser />
+      
     </n-layout>
   </n-space>
 </template>
 
 <script setup>
-// import { ContentSide } from '../components/ContentSide.vue'
+import ContentUser from "./ContentUser.vue";
 import { defineComponent, h, ref } from "vue";
 import { RouterLink, RouterView } from "vue-router";
 import { NIcon } from "naive-ui";
@@ -43,7 +43,7 @@ const menuOptions = [
         RouterLink,
         {
           to: {
-            name: 'profile',
+            name: 'user',
             params: {
               lang: 'en-US'
             }
@@ -61,7 +61,7 @@ const menuOptions = [
         RouterLink,
         {
           to: {
-            name: 'business',
+            name: 'finace',
             params: {
               lang: 'en-US'
             }
@@ -69,7 +69,7 @@ const menuOptions = [
         },
         { default: () => '财报' }
       ),
-    key: "business",
+    key: "finace",
     icon: renderIcon(LogoYen),
   },
   {
@@ -78,7 +78,7 @@ const menuOptions = [
         RouterLink,
         {
           to: {
-            name: '',
+            name: 'order',
             params: {
               lang: 'en-US'
             }
@@ -88,60 +88,9 @@ const menuOptions = [
       ),
     key: "order",
     icon: renderIcon(MailOpenOutline),
-    children: [
-      {
-        label: () =>
-      h(
-        RouterLink,
-        {
-          to: {
-            name: 'pbuy',
-            params: {
-              lang: 'en-US'
-            }
-          }
-        },
-        { default: () => '买单' }
-      ),
-        key: "buy",
-        icon: renderIcon(ArrowUndo),
-      },
-      {
-        label: () =>
-      h(
-        RouterLink,
-        {
-          to: {
-            name: 'psell',
-            params: {
-              lang: 'en-US'
-            }
-          }
-        },
-        { default: () => '卖单' }
-      ),
-        key: "sell",
-        icon: renderIcon(ArrowRedo),
-      },
-    ],
+
   },
-  {
-    label: () =>
-      h(
-        RouterLink,
-        {
-          to: {
-            name: 'porderlist',
-            params: {
-              lang: 'en-US'
-            }
-          }
-        },
-        { default: () => '订单' }
-      ),
-    key: "orderlist",
-    icon: renderIcon(ReorderFour),
-  },
+  
 ];
 const defaultExpandedKeys = ["userinfo"];
 

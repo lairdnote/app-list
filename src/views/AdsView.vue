@@ -1,5 +1,5 @@
 <template>
-  <div class="about">
+  <div>
     <h1>发布挂单</h1>
 
     <n-form
@@ -78,7 +78,7 @@ const message = useMessage();
 const formRef = ref(null);
 console.log(refStore.fee.value);
 const tradePairtoRaw = toRaw(refStore.tradePair.value);
-const paycoin = ref("");
+const paycoin = ref("请选择币种");
 
 const tradePairOptions = [];
 Object.keys(tradePairtoRaw).forEach((key) => {
