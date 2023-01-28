@@ -21,6 +21,16 @@
       <n-form-item label="支付币种">
         <n-tag :bordered="false" type="success"> {{ paycoin }}</n-tag>
       </n-form-item>
+      <n-form-item label="所在地区">
+
+        <n-select
+          placeholder="所在地"
+          v-model:value="localtionValue"
+          :options="localtionOptions"
+          size="medium"
+        />
+
+      </n-form-item>
       <n-form-item label="出售总量">
         <n-input
           v-model:value="model.total"
@@ -70,15 +80,33 @@
 <script setup>
 import { ref, toRaw } from "vue";
 import { constStore } from "../stores/const";
-import { useMessage } from "naive-ui";
+import { useCountryStore } from "../stores/country";
 import { storeToRefs } from "pinia";
+import { useMessage } from "naive-ui";
+
+const useCountry = useCountryStore()
+const country = storeToRefs(useCountry)
+
+
+const countries = toRaw(country.country.value)
+
 
 const refStore = storeToRefs(constStore());
 const message = useMessage();
 const formRef = ref(null);
-console.log(refStore.fee.value);
+
 const tradePairtoRaw = toRaw(refStore.tradePair.value);
 const paycoin = ref("请选择币种");
+const localtionOptions = [];
+
+Object.keys(countries).forEach((key) => {
+  
+  localtionOptions.push({
+    label: countries[key],
+    value: key,
+  });
+});
+
 
 const tradePairOptions = [];
 Object.keys(tradePairtoRaw).forEach((key) => {
@@ -107,6 +135,9 @@ const model = ref({
   remark: "",
 });
 const rules = {};
+
+
+
 
 const handleValidateClick = (e) => {
   e.preventDefault();

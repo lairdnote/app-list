@@ -42,22 +42,33 @@
 </template>
 
 <script setup>
-import { ref } from "vue";
+import { ref, toRaw } from "vue";
+
+import { useCountryStore } from "../stores/country";
+import { storeToRefs } from "pinia";
+
+const useCountry = useCountryStore()
+const country = storeToRefs(useCountry)
+
+
+const countries = toRaw(country.country.value)
+
 const localtionValue = ref(null);
 const numberValue = ref(null)
 const priceValue = ref(null)
 const paymethodVaule = ref(null)
 
-const localtionOptions = [
-  {
-    label: "香港",
-    value: "hongkong",
-  },
-  {
-    label: "中国大陆",
-    value: "china",
-  },
-];
+const localtionOptions = [];
+
+Object.keys(countries).forEach((key) => {
+  
+  localtionOptions.push({
+    label: countries[key],
+    value: key,
+  });
+});
+
+
 const priceOptions = [
     {label: "1.05",
     value: "1.05"}

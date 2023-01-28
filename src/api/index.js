@@ -29,6 +29,10 @@ let _service = {
         const url = baseURL + 'api/v1/user/login'
         return service.post(url, data , headers)
     },
+    getCountryCode(data) {
+        const url = baseURL + "api/v1/sys/country/list"
+        return service.post(url, data, headers)
+    }
 }
 
 export default _service
