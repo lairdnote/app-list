@@ -15,16 +15,24 @@
             style="margin: 0 -4px"
             pane-style="padding-left: 4px; padding-right: 4px; box-sizing: border-box;"
           >
-            <n-tab-pane name="signin" tab="登录/注册">
+            <n-tab-pane name="signin" tab="获取验证码登录">
               <n-form>
-                <n-form-item-row label="邮件地址">
-                  <n-input />
+  
+                <n-form-item-row >
+                  <n-input v-model:value="inputdata" :placeholder="inputLable" />
                 </n-form-item-row>
-                <n-form-item-row label="验证码">
-                  <n-input />
-                </n-form-item-row>
-              </n-form>
-              <n-button type="primary" block secondary strong> 登录 </n-button>
+                </n-form>
+
+              <n-button
+                type="primary"
+                block
+                secondary
+                strong
+                @click="getCode"
+                
+              >
+                {{ buttonText }}
+              </n-button>
             </n-tab-pane>
           </n-tabs>
         </n-card>
@@ -65,4 +73,33 @@
 </style>
 <script setup>
 import HeaderNav from "../components/HeaderNav.vue";
+import _service from "../api/index.js";
+import { useStore  } from "../stores/user";
+import { storeToRefs } from 'pinia'
+import { ref } from "vue";
+
+const user = useStore();
+
+const { sign } = storeToRefs(user)
+
+
+const status = ref("true")
+const inputLable = ref("邮件地址")
+const buttonText = ref("输入邮件地址")
+const inputdata = ref();
+
+const getCode = (data) => {
+  console.log(inputdata.value);
+  _service.getMailCode({ email:  inputdata.value}).then((res) => {
+    inputLable.value = "验证码"
+    buttonText.value = "登录"
+    inputLable.value = "输入验证码"
+    status.value = true
+    console.log(res.data.sign);
+    console.log(user.sign)
+    inputdata.value = ""
+    user.sign = res.data.sign
+   
+  });
+};
 </script>

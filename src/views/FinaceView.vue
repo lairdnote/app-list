@@ -43,7 +43,5 @@ const beforeUpload = (data) => {
 
 </script>>
 
-
-
 <style scoped>
 </style>
