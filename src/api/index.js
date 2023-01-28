@@ -24,7 +24,11 @@ let _service = {
     getMailCode(data) {
         const url = baseURL + 'api/v1/code/send'
         return service.post(url, data, headers)
-    }
+    },
+    getLoginCode(data) {
+        const url = baseURL + 'api/v1/user/login'
+        return service.post(url, data , headers)
+    },
 }
 
 export default _service

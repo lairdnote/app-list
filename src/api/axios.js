@@ -2,8 +2,8 @@ import axios from "axios"
 
 
 const Service = axios.create({
-    timeout:8000,
-   
+    timeout: 8000,
+
 
 })
 
@@ -17,13 +17,13 @@ Service.interceptors.request.use((config) => {
 )
 
 
-Service.interceptors.response.use((response) =>{
+Service.interceptors.response.use((response) => {
 
     if (response.status === 200) {
         return response.data
 
-    }else{
-        return {status: -1}
+    } else {
+        return { status: -1 }
     }
 })
 

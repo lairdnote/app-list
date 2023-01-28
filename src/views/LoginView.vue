@@ -17,20 +17,15 @@
           >
             <n-tab-pane name="signin" tab="获取验证码登录">
               <n-form>
-  
-                <n-form-item-row >
-                  <n-input v-model:value="inputdata" :placeholder="inputLable" />
+                <n-form-item-row>
+                  <n-input
+                    v-model:value="inputdata"
+                    :placeholder="inputLable"
+                  />
                 </n-form-item-row>
-                </n-form>
+              </n-form>
 
-              <n-button
-                type="primary"
-                block
-                secondary
-                strong
-                @click="getCode"
-                
-              >
+              <n-button type="primary" block secondary strong @click="getCode">
                 {{ buttonText }}
               </n-button>
             </n-tab-pane>
@@ -74,32 +69,50 @@
 <script setup>
 import HeaderNav from "../components/HeaderNav.vue";
 import _service from "../api/index.js";
-import { useStore  } from "../stores/user";
-import { storeToRefs } from 'pinia'
+import { useStore } from "../stores/user";
+import { storeToRefs } from "pinia";
 import { ref } from "vue";
-
+import router from "../router";
+import { useMessage } from "naive-ui";
+const message = useMessage();
 const user = useStore();
 
-const { sign } = storeToRefs(user)
+const { sign, email, token, avatar, nickname, userId } = storeToRefs(user);
 
-
-const status = ref("true")
-const inputLable = ref("邮件地址")
-const buttonText = ref("输入邮件地址")
+const inputLable = ref("邮件地址");
+const buttonText = ref("输入邮件地址");
 const inputdata = ref();
 
 const getCode = (data) => {
-  console.log(inputdata.value);
-  _service.getMailCode({ email:  inputdata.value}).then((res) => {
-    inputLable.value = "验证码"
-    buttonText.value = "登录"
-    inputLable.value = "输入验证码"
-    status.value = true
-    console.log(res.data.sign);
-    console.log(user.sign)
-    inputdata.value = ""
-    user.sign = res.data.sign
-   
-  });
+  if (user.email === "") {
+    user.email = inputdata.value;
+  }
+  if (user.sign === "") {
+    _service.getMailCode({ email: inputdata.value }).then((res) => {
+      inputLable.value = "验证码";
+      buttonText.value = "登录";
+      inputLable.value = "输入验证码";
+      inputdata.value = "";
+      user.sign = res.data.sign;
+    });
+  }
+  if (user.email !== "" && user.sign !== "") {
+    _service
+      .getLoginCode({
+        email: user.email,
+        sign: user.sign,
+        code: inputdata.value,
+      })
+      .then((res) => {
+        console.log(res.data);
+        user.avatar = res.data.avatar;
+        user.nickname = res.data.nickname
+        user.userId = res.data.userId
+        user.token = res.data.token;
+        router.push("/");
+      });
+  } else {
+    message.error("验证码不正确");
+  }
 };
 </script>

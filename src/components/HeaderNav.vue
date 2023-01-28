@@ -34,7 +34,11 @@
             >
 
             <RouterLink to="/login">
-              <n-dropdown :options="options" trigger="click" @select="handleSelect">
+              <n-dropdown
+                :options="options"
+                trigger="click"
+                @select="handleSelect"
+              >
                 <n-button>用户资料</n-button>
               </n-dropdown>
               <!-- 
@@ -70,44 +74,47 @@
 </style>
 <script setup>
 import { h, defineComponent } from "vue";
-import { NIcon , useMessage} from "naive-ui";
+import { NIcon, useMessage } from "naive-ui";
 import { useRouter } from "vue-router";
-
+import { getActivePinia } from "pinia";
 import {
   PersonCircleOutline as UserIcon,
   Pencil as EditIcon,
-  LogOutOutline as LogoutIcon
+  LogOutOutline as LogoutIcon,
 } from "@vicons/ionicons5";
 
-const router = useRouter()
+const router = useRouter();
 
-const message = useMessage()
+const message = useMessage();
 const renderIcon = (icon) => {
   return () => {
     return h(NIcon, null, {
-      default: () => h(icon)
+      default: () => h(icon),
     });
   };
 };
-const  options = [
-        {
-          label: "用户资料",
-          key: "/profile",
-          icon: renderIcon(UserIcon)
-        },
-        {
-          label: "编辑用户资料",
-          key: "/profile/user",
-          icon: renderIcon(EditIcon)
-        },
-        {
-          label: "退出登录",
-          key: "/profile/logout",
-          icon: renderIcon(LogoutIcon)
-        }
-      ]
+const options = [
+  {
+    label: "用户资料",
+    key: "/profile",
+    icon: renderIcon(UserIcon),
+  },
+  {
+    label: "编辑用户资料",
+    key: "/profile/user",
+    icon: renderIcon(EditIcon),
+  },
+  {
+    label: "退出登录",
+    key: "/logout",
+    icon: renderIcon(LogoutIcon),
+  },
+];
 const handleSelect = (key) => {
-  message.info(String(key));
-  router.push(key);
-}
+  if (key === "/logout") {
+    getActivePinia()._s.forEach((store) => store.$reset());
+  } else {
+    router.push(key);
+  }
+};
 </script>
