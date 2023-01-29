@@ -32,26 +32,21 @@
                 >通知</n-button
               ></RouterLink
             >
-          
+
             <RouterLink to="/login">
               <div v-if="isLogin === true">
-              <n-dropdown
-                :options="options"
-                trigger="click"
-                @select="handleSelect"
-              >
-                <n-button>用户资料</n-button>
-              </n-dropdown>
-            </div>
-            <div v-else>
-
-              <n-button quaternary type="primary" size="large"
-                >登录</n-button
-              >
-            
-            </div>
+                <n-dropdown
+                  :options="options"
+                  trigger="click"
+                  @select="handleSelect"
+                >
+                  <n-button>用户资料</n-button>
+                </n-dropdown>
+              </div>
+              <div v-else>
+                <n-button quaternary type="primary" size="large">登录</n-button>
+              </div>
             </RouterLink>
-
           </n-space>
         </n-layout-header>
       </n-layout>
@@ -81,7 +76,7 @@
 import { h, ref } from "vue";
 import { NIcon, useMessage } from "naive-ui";
 import { useRouter } from "vue-router";
-import { getActivePinia,storeToRefs } from "pinia";
+import { getActivePinia, storeToRefs } from "pinia";
 
 import {
   PersonCircleOutline as UserIcon,
@@ -96,10 +91,10 @@ import { useStore } from "../stores/user";
 const country = useCountryStore();
 const user = useStore();
 const getUser = storeToRefs(user);
-const isLogin = ref(false)
+const isLogin = ref(false);
 
-if(getUser.token.value !== ""){
-  isLogin.value = true
+if (getUser.token.value !== "") {
+  isLogin.value = true;
 }
 
 _service.getCountryCode({ language: "CN" }).then((res) => {

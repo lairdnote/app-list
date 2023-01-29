@@ -4,87 +4,90 @@
       <n-gi>
         <n-select
           placeholder="所在地"
-          v-model:value="localtionValue"
+          v-model:value="data.country"
           :options="localtionOptions"
           size="medium"
         />
       </n-gi>
       <n-gi>
-        <n-input v-model:value="value" type="text" placeholder="输入数量" />
+        <n-input
+          v-model:value="data.amount"
+          type="text"
+          placeholder="输入数量"
+        />
       </n-gi>
       <n-gi>
-        <n-select
-          
-          placeholder="单价"
-          v-model:value="priceValue"
-          :options="priceOptions"
-          size="medium"
+        <n-input
+          v-model:value="data.price"
+          type="text"
+          placeholder="输入单价"
         />
       </n-gi>
       <n-gi>
         <n-select
-        
           placeholder="支付方式"
-          v-model:value="paymethodVaule"
+          v-model:value="data.payment"
           :options="paymethodOptions"
           size="medium"
         />
       </n-gi>
       <n-gi>
-        <n-button strong secondary type="success">
-                提交
-    </n-button>
+        <n-button strong secondary type="success" @click="submitSearch"> 提交 </n-button>
       </n-gi>
     </n-grid>
-
-    
   </div>
 </template>
 
 <script setup>
-import { ref, toRaw } from "vue";
+import { ref, toRaw, defineProps } from "vue";
 
 import { useCountryStore } from "../stores/country";
+import { constStore } from "../stores/const";
 import { storeToRefs } from "pinia";
+import _service from "../api";
+const consts = constStore();
+const { payments } = storeToRefs(consts);
+const useCountry = useCountryStore();
+const country = storeToRefs(useCountry);
+const props = defineProps(["action"]);
+//console.log("-------", props.action);
+const countries = toRaw(country.country.value);
 
-const useCountry = useCountryStore()
-const country = storeToRefs(useCountry)
-
-
-const countries = toRaw(country.country.value)
-
-const localtionValue = ref(null);
-const numberValue = ref(null)
-const priceValue = ref(null)
-const paymethodVaule = ref(null)
 
 const localtionOptions = [];
 
 Object.keys(countries).forEach((key) => {
-  
   localtionOptions.push({
     label: countries[key],
     value: key,
   });
 });
 
+const data = ref({
+  country: "",
+  amount: "",
+  price: null,
+  payment: "",
+});
 
-const priceOptions = [
-    {label: "1.05",
-    value: "1.05"}
-]
+const paymethodOptions = [];
 
-const paymethodOptions = [
-{
-    label: "支付宝",
-    value: "alipay",
-  },
-  {
-    label: "PayPal",
-    value: "paypal",
-  },
-]
+Object.keys(payments.value).forEach((key) => {
+  paymethodOptions.push({
+    label: payments.value[key],
+    value: key,
+  });
+})
 
+const submitSearch = () => {
+
+  const datas = toRaw(data.value)
+  console.log(datas)
+  _service.getSearchList({"country": datas.country, "amount": datas.amount, "price": datas.price, "payments": datas.payment}).then((res) => {
+    console.log(res.data)
+  })
+
+};
 </script>>
 
 <style>

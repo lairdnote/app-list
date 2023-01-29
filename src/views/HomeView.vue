@@ -6,13 +6,13 @@
      
       <n-tab-pane name="buy" tab="购买">
         <n-card title="搜索" style="margin-bottom: 16px">
-<SearchTableVue />
+<SearchTableVue :action="buyaction"/>
 </n-card>
         <BuyTableVue />
       </n-tab-pane>
       <n-tab-pane name="sell" tab="出售">   
         <n-card title="搜索" style="margin-bottom: 16px">
-<SearchTableVue />
+<SearchTableVue :action="sellaction"/>
 </n-card>   
         <SellTableVue />
       </n-tab-pane>
@@ -28,4 +28,7 @@ import BuyTableVue from '../components/BuyTable.vue';
 import SellTableVue from '../components/SellTable.vue';
 import SearchTableVue from '../components/SearchTable.vue';
 
+import {ref } from 'vue'
+const buyaction = ref("buy")
+const sellaction = ref("sell")
 </script>

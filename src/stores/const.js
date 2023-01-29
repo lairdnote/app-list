@@ -8,16 +8,13 @@ export const constStore = defineStore('const', () => {
         1: "USD/HDO"
 
     }
-    const country = ref({})
-    country.value = {
-        0: "China",
-        1: "HongKong"
-    }
+
 
     const payments = ref({})
     payments.value = {
         0: "PayPal",
-        1: "AliPay"
+        1: "AliPay",
+        2: "WeChat"
     }
     const opertionType = ref({})
     opertionType.value = {
@@ -29,5 +26,5 @@ export const constStore = defineStore('const', () => {
     fee.value = 0.05
 
 
-    return { tradePair, country, payments, opertionType, fee }
+    return { tradePair, payments, opertionType, fee }
 })
