@@ -25,7 +25,7 @@
 
         <n-select
           placeholder="所在地"
-          v-model:value="localtionValue"
+          v-model:value="model.country"
           :options="localtionOptions"
           size="medium"
         />
@@ -131,7 +131,7 @@ const model = ref({
   amount: "",
   price: "",
   payment: "",
-  contry: "",
+  country: "",
   remark: "",
 });
 const rules = {};

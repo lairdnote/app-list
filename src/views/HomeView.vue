@@ -8,13 +8,13 @@
         <n-card title="搜索" style="margin-bottom: 16px">
 <SearchTableVue :action="buyaction"/>
 </n-card>
-        <BuyTableVue />
+        <DataTable />
       </n-tab-pane>
       <n-tab-pane name="sell" tab="出售">   
         <n-card title="搜索" style="margin-bottom: 16px">
 <SearchTableVue :action="sellaction"/>
 </n-card>   
-<SellTableVue />
+<DataTable />
 </n-tab-pane>
    
     </n-tabs>
@@ -24,11 +24,13 @@
 
 <script setup>
 
-import BuyTableVue from '../components/BuyTable.vue';
-import SellTableVue from '../components/SellTable.vue';
+import DataTable from '../components/DataTable.vue';
 import SearchTableVue from '../components/SearchTable.vue';
 
 import {ref } from 'vue'
 const buyaction = ref("buy")
 const sellaction = ref("sell")
+
+
+
 </script>

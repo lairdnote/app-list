@@ -40,7 +40,7 @@
 </template>
 
 <script setup>
-import { ref, toRaw, defineProps } from "vue";
+import { ref, toRaw } from "vue";
 
 import { useCountryStore } from "../stores/country";
 import { constStore } from "../stores/const";
@@ -53,7 +53,6 @@ const country = storeToRefs(useCountry);
 const props = defineProps(["action"]);
 //console.log("-------", props.action);
 const countries = toRaw(country.country.value);
-
 
 const localtionOptions = [];
 
@@ -85,6 +84,8 @@ const submitSearch = () => {
   const datas = toRaw(data.value)
   console.log(datas)
   _service.getSearchList({"country": datas.country, "amount": datas.amount, "price": datas.price, "payments": datas.payment}).then((res) => {
+    
+    emit('data', res.data)
     console.log(res.data)
   })
 

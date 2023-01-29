@@ -1,25 +1,33 @@
 <template>
-
   <n-data-table
-    :columns="sellcreateColumns()"
+    :columns="buycreateColumns()"
     :data="data"
     :pagination="paginationReactive"
-    
   />
+</template>>
 
-</template>
 <script setup>
 import { reactive, h } from "vue";
 import { NButton } from "naive-ui";
-
 import { useRouter } from "vue-router";
 
 const router = useRouter();
 
+const paginationReactive = reactive({
+  page: 1,
+  pageSize: 50,
+  showSizePicker: true,
+  onChange: (page) => {
+    paginationReactive.page = page;
+  },
+  onUpdatePageSize: (pageSize) => {
+    paginationReactive.pageSize = pageSize;
+    paginationReactive.page = 1;
+  },
+});
 
-
-const sellcreateColumns = () => [
-{
+const buycreateColumns = () => [
+  {
     title: "商家",
     key: "machant",
   },
@@ -55,16 +63,15 @@ const sellcreateColumns = () => [
           size: "small",
           onClick: () => sendMail({ row }),
         },
-        { default: () => "出售" }
+        { default: () => "购买" }
       );
     },
   },
 ];
 
 const sendMail = (args) => {
-  console.log("-------", args.row.action);
-
-  router.replace({
+  console.log("-----", args);
+  router.push({
     path: "/trade",
     name: "trade",
     params: {
@@ -78,9 +85,6 @@ const sendMail = (args) => {
     },
   });
 };
-
-
-
 
 const data = [
   {
@@ -104,21 +108,4 @@ data.forEach(item => {
   item.limit = l.up + " - "  + l.down
 });
 console.log(data.length);
-
-const paginationReactive = reactive({
-  page: 1,
-  pageSize: 15,
-  showSizePicker: true,
-  pageSizes: [15, 20, 30],
-  onChange: (page) => {
-    paginationReactive.page = page;
-    console.log("---1-1-1-1",paginationReactive.page)
-  },
-  onUpdatePageSize: (pageSize) => {
-    paginationReactive.pageSize = pageSize;
-    paginationReactive.page = 1;
-    console.log("---2.2.2.2",paginationReactive.page)
-  },
-});
-
-</script>
+</script>>
