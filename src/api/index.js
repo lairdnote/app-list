@@ -35,7 +35,7 @@ let _service = {
         return service.post(url, data, headers)
     },
     getSearchList(data) {
-        const url = baseURL + "/api/v1/ads/search"
+        const url = baseURL + "/api/v1/guang/search"
         return service.post(url, data, headers)
     }
 }

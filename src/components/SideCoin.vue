@@ -3,7 +3,7 @@
     <n-layout has-sider>
       <n-layout-sider content-style="padding: 24px;"> 
         
-        <n-data-table :columns="columns" :data="data" :pagination="pagination" />
+        <n-data-table :columns="columns" :data="data"  />
       </n-layout-sider>
       
       <ContentSide />
@@ -29,12 +29,6 @@ const data = [
     key: 0,
     name: "USD/HDO"
 
-  }, 
-  /* {
-    key: 1,
-    name: "USD/HCN"
-
-  } 
-  */
+  }
 ]
 </script>

@@ -14,9 +14,9 @@
         <n-card title="搜索" style="margin-bottom: 16px">
 <SearchTableVue :action="sellaction"/>
 </n-card>   
-        <SellTableVue />
-      </n-tab-pane>
-
+<SellTableVue />
+</n-tab-pane>
+   
     </n-tabs>
   </n-card>
  
