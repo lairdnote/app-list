@@ -2,16 +2,32 @@
   <n-data-table
     :columns="buycreateColumns()"
     :data="data"
+    :remote=true 
     :pagination="paginationReactive"
   />
 </template>>
-
 <script setup>
-import { reactive, h } from "vue";
-import { NButton } from "naive-ui";
+import { reactive, h , ref, inject, toRaw} from "vue";
+import { NButton, treeDark } from "naive-ui";
 import { useRouter } from "vue-router";
+const emitter = inject('emitter');   // Inject `emitter`
+const data = ref([])
+const TempData = []
+emitter.on('searchdata', (value) => { 
+  data.value = []  // *Listen* for event
+  toRaw(value).forEach(item => {
+    var limitC = item.limit
+    var temp = item 
+    temp.limit = limitC.down + "-" + limitC.up 
+    data.value.push(toRaw(temp))
+    
+  }) 
+  
+});
+
 
 const router = useRouter();
+
 
 const paginationReactive = reactive({
   page: 1,
@@ -86,26 +102,6 @@ const sendMail = (args) => {
   });
 };
 
-const data = [
-  {
-    adsId: 1000000000023,
-    tradePair: 1,
-    machant: "abc@163.com",
-    country: 1,
-    price: 1.08,
-    limit: {
-      up: 200,
-      down: 100,
-    },
-    payments: [1, 2, 3],
-    operationType: 1,
-    datetime: "2022-01-16 18:09:35",
-  },
-];
 
-data.forEach(item => {
-  const l = item.limit
-  item.limit = l.up + " - "  + l.down
-});
-console.log(data.length);
-</script>>
+
+</script>

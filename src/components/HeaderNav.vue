@@ -98,7 +98,6 @@ if (getUser.token.value !== "") {
 }
 
 _service.getCountryCode({ language: "CN" }).then((res) => {
-  console.log(res.code);
   if (res.code == 0) {
     country.country = res.data;
   }

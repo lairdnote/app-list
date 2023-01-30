@@ -14,7 +14,7 @@
         <n-card title="搜索" style="margin-bottom: 16px">
 <SearchTableVue :action="sellaction"/>
 </n-card>   
-<DataTable />
+<DataTable :searchData="data" :v-model="data" :renderComponent=true />
 </n-tab-pane>
    
     </n-tabs>
@@ -27,10 +27,10 @@
 import DataTable from '../components/DataTable.vue';
 import SearchTableVue from '../components/SearchTable.vue';
 
-import {ref } from 'vue'
+import {ref, inject, toRaw } from 'vue'
 const buyaction = ref("buy")
 const sellaction = ref("sell")
-
+const data = ref([])
 
 
 </script>

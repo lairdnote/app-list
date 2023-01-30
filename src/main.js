@@ -7,6 +7,8 @@ import 'vfonts/Lato.css'
 import naive from 'naive-ui'
 import 'vfonts/FiraCode.css'
 
+import mitt from 'mitt';  
+const emitter = mitt(); 
 
 const app = createApp(App)
 const pinia = createPinia()
@@ -19,6 +21,8 @@ pinia.use(({ store }) => {
 pinia.use(piniaPluginPersistedstate)
 app.use(pinia)
 app.use(naive)
+
+app.provide('emitter', emitter);  
 app.use(router)
 
 app.mount('#app')

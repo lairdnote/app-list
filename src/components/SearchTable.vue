@@ -32,15 +32,16 @@
         />
       </n-gi>
       <n-gi>
-        <n-button strong secondary type="success" @click="submitSearch"> 提交 </n-button>
+        <n-button strong secondary type="success" @click="submitSearch">
+          提交
+        </n-button>
       </n-gi>
     </n-grid>
   </div>
-
 </template>
 
 <script setup>
-import { ref, toRaw } from "vue";
+import { ref, toRaw, inject } from "vue";
 
 import { useCountryStore } from "../stores/country";
 import { constStore } from "../stores/const";
@@ -51,7 +52,7 @@ const { payments } = storeToRefs(consts);
 const useCountry = useCountryStore();
 const country = storeToRefs(useCountry);
 const props = defineProps(["action"]);
-//console.log("-------", props.action);
+console.log("-------", props.action);
 const countries = toRaw(country.country.value);
 
 const localtionOptions = [];
@@ -77,18 +78,25 @@ Object.keys(payments.value).forEach((key) => {
     label: payments.value[key],
     value: key,
   });
-})
+});
+const emitter = inject("emitter");
+
 
 const submitSearch = () => {
+  const datas = toRaw(data.value);
 
-  const datas = toRaw(data.value)
-  console.log(datas)
-  _service.getSearchList({"country": datas.country, "amount": datas.amount, "price": datas.price, "payments": datas.payment}).then((res) => {
-    
-    emit('data', res.data)
-    console.log(res.data)
-  })
-
+  _service
+    .getSearchList({
+      country: datas.country,
+      amount: datas.amount,
+      price: datas.price,
+      payments: datas.payment,
+    })
+    .then((res) => {
+      //console.log(res.data.list)
+      emitter.emit("searchdata", res.data.list);
+      
+    });
 };
 </script>>
 
