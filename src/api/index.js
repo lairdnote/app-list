@@ -6,10 +6,10 @@ let baseURL;
 
 
 if (process.env.NODE_ENV === "dev") {
-    baseURL = "https://a7950971-ec07-45b0-b1d3-468fd250a525.mock.pstmn.io";
+    baseURL = "http://192.168.31.11:4888/mock/11";
 };
 if (process.env.NODE_ENV === "prod") {
-    baseURL = "https://a7950971-ec07-45b0-b1d3-468fd250a525.mock.pstmn.io";
+    baseURL = "http://192.168.31.11:4888/mock/11";
 } else {
     baseURL = "http://192.168.31.11:4888/mock/11"
 }

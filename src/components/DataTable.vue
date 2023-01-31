@@ -10,30 +10,39 @@ import {
   reactive,
   h,
   ref,
-  toRef,
   inject,
-  toRaw,
   onMounted,
-  onUnmounted,
+
 } from "vue";
 import { NButton, treeDark } from "naive-ui";
 import { useRouter } from "vue-router";
 import _service from "../api";
 const emitter = inject("emitter"); // Inject `emitter`
 const data = ref([]);
-var dataLenght = 0;
-emitter.on("searchdata", (res) => {
-  const datalist =  res.data.list
-  datalist.forEach((item) => {
-    const limitC = item.limit.up + " - " + item.limit.down;
-    let temp = item;
-    temp.limit = limitC;
-    cleandata.value.push(toRaw(temp));
-  });
+var cleandata= []
 
-  data.value = cleandata.value;
-  dataLenght = data.value.length;
+emitter.on("searchdata", (querydata) => {
+  data.value = null
+  cleandata = []
+  console.log(querydata.data.list)
+  ContactLimit(querydata.data.list)
+
 });
+
+const ContactLimit = (resData) => {
+
+    resData.forEach((item) =>{
+     
+      const limitC = item.limit.up + " - " + item.limit.down;
+        var temp = item;
+        temp.limit = limitC;
+        cleandata.push(temp);
+    
+    })
+    data.value = cleandata
+
+}
+
 
 onMounted(() => {
   _service
@@ -44,12 +53,7 @@ onMounted(() => {
       payments: "",
     })
     .then((res) => {
-      res.data.list.forEach((item) => {
-        const limitC = item.limit.up + " - " + item.limit.down;
-        let temp = item;
-        temp.limit = limitC;
-        data.value.push(toRaw(temp));
-      });
+      ContactLimit(res.data.list)
     });
 });
 

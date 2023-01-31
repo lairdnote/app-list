@@ -67,7 +67,7 @@ Object.keys(countries).forEach((key) => {
 const data = ref({
   country: "",
   amount: "",
-  price: null,
+  price: "",
   payment: "",
 });
 
@@ -84,7 +84,7 @@ const emitter = inject("emitter");
 
 const submitSearch = () => {
   const datas = toRaw(data.value);
-
+  console.log(datas)
   _service
     .getSearchList5({
       country: datas.country,
@@ -94,7 +94,8 @@ const submitSearch = () => {
     })
     .then((res) => {
       console.log(res)
-      emitter.emit("searchdata", res);
+      const querydata = res
+      emitter.emit("searchdata", querydata);
       
     });
 };
