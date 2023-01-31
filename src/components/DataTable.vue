@@ -2,32 +2,58 @@
   <n-data-table
     :columns="buycreateColumns()"
     :data="data"
-    :remote=true 
     :pagination="paginationReactive"
   />
 </template>>
 <script setup>
-import { reactive, h , ref, inject, toRaw} from "vue";
+import {
+  reactive,
+  h,
+  ref,
+  toRef,
+  inject,
+  toRaw,
+  onMounted,
+  onUnmounted,
+} from "vue";
 import { NButton, treeDark } from "naive-ui";
 import { useRouter } from "vue-router";
-const emitter = inject('emitter');   // Inject `emitter`
-const data = ref([])
-const TempData = []
-emitter.on('searchdata', (value) => { 
-  data.value = []  // *Listen* for event
-  toRaw(value).forEach(item => {
-    var limitC = item.limit
-    var temp = item 
-    temp.limit = limitC.down + "-" + limitC.up 
-    data.value.push(toRaw(temp))
-    
-  }) 
-  
+import _service from "../api";
+const emitter = inject("emitter"); // Inject `emitter`
+const data = ref([]);
+var dataLenght = 0;
+emitter.on("searchdata", (res) => {
+  const datalist =  res.data.list
+  datalist.forEach((item) => {
+    const limitC = item.limit.up + " - " + item.limit.down;
+    let temp = item;
+    temp.limit = limitC;
+    cleandata.value.push(toRaw(temp));
+  });
+
+  data.value = cleandata.value;
+  dataLenght = data.value.length;
 });
 
+onMounted(() => {
+  _service
+    .getSearchList({
+      country: "CN",
+      amount: "",
+      price: "",
+      payments: "",
+    })
+    .then((res) => {
+      res.data.list.forEach((item) => {
+        const limitC = item.limit.up + " - " + item.limit.down;
+        let temp = item;
+        temp.limit = limitC;
+        data.value.push(toRaw(temp));
+      });
+    });
+});
 
 const router = useRouter();
-
 
 const paginationReactive = reactive({
   page: 1,
@@ -101,7 +127,4 @@ const sendMail = (args) => {
     },
   });
 };
-
-
-
 </script>

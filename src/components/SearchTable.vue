@@ -86,15 +86,15 @@ const submitSearch = () => {
   const datas = toRaw(data.value);
 
   _service
-    .getSearchList({
+    .getSearchList5({
       country: datas.country,
       amount: datas.amount,
       price: datas.price,
       payments: datas.payment,
     })
     .then((res) => {
-      //console.log(res.data.list)
-      emitter.emit("searchdata", res.data.list);
+      console.log(res)
+      emitter.emit("searchdata", res);
       
     });
 };

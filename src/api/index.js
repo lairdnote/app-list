@@ -11,7 +11,7 @@ if (process.env.NODE_ENV === "dev") {
 if (process.env.NODE_ENV === "prod") {
     baseURL = "https://a7950971-ec07-45b0-b1d3-468fd250a525.mock.pstmn.io";
 } else {
-    baseURL = "https://a7950971-ec07-45b0-b1d3-468fd250a525.mock.pstmn.io"
+    baseURL = "http://192.168.31.11:4888/mock/11"
 }
 
 const headers = {
@@ -36,6 +36,10 @@ let _service = {
     },
     getSearchList(data) {
         const url = baseURL + "/api/v1/guang/search"
+        return service.post(url, data, headers)
+    },
+    getSearchList5(data) {
+        const url = baseURL + "/api/v1/guang/search1"
         return service.post(url, data, headers)
     }
 }
