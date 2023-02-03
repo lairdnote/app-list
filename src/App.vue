@@ -3,9 +3,9 @@
 <template>
   <n-config-provider :theme="darkTheme">
     <n-global-style />
-    <n-message-provider>
-      <router-view></router-view>
-  </n-message-provider>
+      <n-message-provider>
+        <router-view></router-view>
+      </n-message-provider>
   </n-config-provider>
 </template>
 

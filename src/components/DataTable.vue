@@ -6,43 +6,40 @@
   />
 </template>>
 <script setup>
-import {
-  reactive,
-  h,
-  ref,
-  inject,
-  onMounted,
-
-} from "vue";
+import { reactive, h, ref, inject, onMounted, getCurrentInstance } from "vue";
 import { NButton, treeDark } from "naive-ui";
 import { useRouter } from "vue-router";
 import _service from "../api";
 const emitter = inject("emitter"); // Inject `emitter`
 const data = ref([]);
-var cleandata= []
+var cleandata = [];
 
 emitter.on("searchdata", (querydata) => {
-  data.value = null
-  cleandata = []
-  console.log(querydata.data.list)
-  ContactLimit(querydata.data.list)
-
+  data.value = null;
+  cleandata = [];
+  ContactLimit(querydata.data.list);
+  emitter.off("searchdata");
 });
-
+// 这里有一个issue 数据的处理偶尔要出现问题。特别是limit 这里
 const ContactLimit = (resData) => {
-
-    resData.forEach((item) =>{
-     
-      const limitC = item.limit.up + " - " + item.limit.down;
-        var temp = item;
-        temp.limit = limitC;
-        cleandata.push(temp);
-    
-    })
-    data.value = cleandata
-
-}
-
+  resData.forEach((item) => {
+    var itemdata = JSON.stringify(item);
+    const op = JSON.parse(itemdata);
+    const { limit } = op;
+    var limitC = op.limit;
+    var temp = item;
+    if (typeof limitC === String){
+      temp.limit = limitC
+    }else{
+      temp.limit = limitC.up + " - " + limitC.down;
+    }
+    cleandata.push(temp);
+  });
+ 
+  data.value = cleandata;
+  const instance = getCurrentInstance();
+  instance?.proxy?.$forceUpdate();
+};
 
 onMounted(() => {
   _service
@@ -53,7 +50,7 @@ onMounted(() => {
       payments: "",
     })
     .then((res) => {
-      ContactLimit(res.data.list)
+      ContactLimit(res.data.list);
     });
 });
 

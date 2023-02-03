@@ -84,7 +84,7 @@ const emitter = inject("emitter");
 
 const submitSearch = () => {
   const datas = toRaw(data.value);
-  console.log(datas)
+
   _service
     .getSearchList5({
       country: datas.country,
@@ -93,7 +93,7 @@ const submitSearch = () => {
       payments: datas.payment,
     })
     .then((res) => {
-      console.log(res)
+
       const querydata = res
       emitter.emit("searchdata", querydata);
       
