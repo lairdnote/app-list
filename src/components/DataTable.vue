@@ -1,7 +1,7 @@
 <template>
   <n-data-table
     :columns="buycreateColumns()"
-    :data="data"
+    v-model:data="data"
     :pagination="paginationReactive"
   />
 </template>>
@@ -33,6 +33,7 @@ const ContactLimit = (resData) => {
     }else{
       temp.limit = limitC.up + " - " + limitC.down;
     }
+
     cleandata.push(temp);
   });
  
@@ -69,6 +70,9 @@ const paginationReactive = reactive({
   },
 });
 
+const Paymentsoptions = {1: "支付宝",2: "paypal", 3:"weChat"}
+
+
 const buycreateColumns = () => [
   {
     title: "商家",
@@ -94,6 +98,16 @@ const buycreateColumns = () => [
   {
     title: "支付方式",
     key: "payments",
+    render(row) {
+      return h(
+        NButton,
+        {
+          type: "info",
+          size: "small"
+        },
+        { default: () => Paymentsoptions[row.payments[0]] },
+      );
+    },
   },
   {
     title: "购买",
@@ -112,8 +126,9 @@ const buycreateColumns = () => [
   },
 ];
 
+
 const sendMail = (args) => {
-  console.log("-----", args);
+  console.log(args);
   router.push({
     path: "/trade",
     name: "trade",
