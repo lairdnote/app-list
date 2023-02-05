@@ -11,27 +11,18 @@
       </n-layout-sider>
 
       <ContentUser />
-      
     </n-layout>
   </n-space>
 </template>
 
 <script setup>
 import ContentUser from "./ContentUser.vue";
-import { defineComponent, h, ref } from "vue";
-import { RouterLink, RouterView } from "vue-router";
+import { h, ref } from "vue";
+import { RouterLink } from "vue-router";
 import { NIcon } from "naive-ui";
-import {
-  Accessibility,
-  LogoYen,
-  MailOpenOutline,
-  ArrowUndo,
-  ArrowRedo,
-  ReorderFour,
-} from "@vicons/ionicons5";
+import { Accessibility, LogoYen, MailOpenOutline } from "@vicons/ionicons5";
 
 const meunValueRef = ref(false);
-
 
 function renderIcon(icon) {
   return () => h(NIcon, null, { default: () => h(icon) });
@@ -43,17 +34,16 @@ const menuOptions = [
         RouterLink,
         {
           to: {
-            name: 'user',
+            name: "user",
             params: {
-              lang: 'en-US'
-            }
-          }
+              lang: "en-US",
+            },
+          },
         },
-        { default: () => '用户信息' }
+        { default: () => "用户信息" }
       ),
     key: "userinfo",
     icon: renderIcon(Accessibility),
-    
   },
   {
     label: () =>
@@ -61,13 +51,13 @@ const menuOptions = [
         RouterLink,
         {
           to: {
-            name: 'finace',
+            name: "finace",
             params: {
-              lang: 'en-US'
-            }
-          }
+              lang: "en-US",
+            },
+          },
         },
-        { default: () => '财报' }
+        { default: () => "财报" }
       ),
     key: "finace",
     icon: renderIcon(LogoYen),
@@ -78,20 +68,17 @@ const menuOptions = [
         RouterLink,
         {
           to: {
-            name: 'order',
+            name: "order",
             params: {
-              lang: 'en-US'
-            }
-          }
+              lang: "en-US",
+            },
+          },
         },
-        { default: () => '挂单' }
+        { default: () => "挂单" }
       ),
     key: "order",
     icon: renderIcon(MailOpenOutline),
-
   },
-  
 ];
 const defaultExpandedKeys = ["userinfo"];
-
 </script>

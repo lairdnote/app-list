@@ -4,7 +4,7 @@
     v-model:data="data"
     :pagination="paginationReactive"
   />
-</template>>
+</template>
 <script setup>
 import { reactive, h, ref, inject, onMounted, getCurrentInstance } from "vue";
 import { NButton, treeDark } from "naive-ui";
@@ -28,15 +28,15 @@ const ContactLimit = (resData) => {
     const { limit } = op;
     var limitC = op.limit;
     var temp = item;
-    if (typeof limitC === String){
-      temp.limit = limitC
-    }else{
+    if (typeof limitC === String) {
+      temp.limit = limitC;
+    } else {
       temp.limit = limitC.up + " - " + limitC.down;
     }
 
     cleandata.push(temp);
   });
- 
+
   data.value = cleandata;
   const instance = getCurrentInstance();
   instance?.proxy?.$forceUpdate();
@@ -70,8 +70,7 @@ const paginationReactive = reactive({
   },
 });
 
-const Paymentsoptions = {1: "支付宝",2: "paypal", 3:"weChat"}
-
+const Paymentsoptions = { 1: "支付宝", 2: "paypal", 3: "weChat" };
 
 const buycreateColumns = () => [
   {
@@ -103,9 +102,9 @@ const buycreateColumns = () => [
         NButton,
         {
           type: "info",
-          size: "small"
+          size: "small",
         },
-        { default: () => Paymentsoptions[row.payments[0]] },
+        { default: () => Paymentsoptions[row.payments[0]] }
       );
     },
   },
@@ -125,7 +124,6 @@ const buycreateColumns = () => [
     },
   },
 ];
-
 
 const sendMail = (args) => {
   console.log(args);
