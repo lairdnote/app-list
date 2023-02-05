@@ -87,7 +87,6 @@ import { getActivePinia, storeToRefs } from "pinia";
 
 import {
   PersonCircleOutline as UserIcon,
-  Pencil as EditIcon,
   LogOutOutline as LogoutIcon,
 } from "@vicons/ionicons5";
 
