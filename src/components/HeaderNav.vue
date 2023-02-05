@@ -40,12 +40,7 @@
                 @select="handleSelect"
               >
                 <n-avatar
-                  :style="{
-                    color: 'yellow',
-                    backgroundColor: 'red',
-                  }"
-                >
-                  M
+                  :src="avatarsrc">
                 </n-avatar>
               </n-dropdown>
             </div>
@@ -104,7 +99,7 @@ const country = useCountryStore();
 const user = useStore();
 const getUser = storeToRefs(user);
 const isLogin = ref(false);
-
+const avatarsrc = ref("https://gw.alipayobjects.com/zos/antfincdn/aPkFc8Sj7n/method-draw-image.svg")
 if (getUser.token.value !== "") {
   isLogin.value = true;
 }
@@ -128,13 +123,8 @@ const renderIcon = (icon) => {
 const options = [
   {
     label: "用户资料",
-    key: "/profile",
-    icon: renderIcon(UserIcon),
-  },
-  {
-    label: "编辑用户资料",
     key: "/profile/user",
-    icon: renderIcon(EditIcon),
+    icon: renderIcon(UserIcon),
   },
   {
     label: "退出登录",
