@@ -33,20 +33,26 @@
               ></RouterLink
             >
 
-            <RouterLink to="/login">
               <div v-if="isLogin === true">
                 <n-dropdown
                   :options="options"
                   trigger="click"
                   @select="handleSelect"
                 >
-                  <n-button>用户资料</n-button>
+                  <n-avatar
+                    :style="{
+                      color: 'yellow',
+                      backgroundColor: 'red',
+                    }"
+                  >
+                    M
+                  </n-avatar>
                 </n-dropdown>
               </div>
               <div v-else>
-                <n-button quaternary type="primary" size="large">登录</n-button>
+                <n-button quaternary type="primary" size="large" @click="loginpage">登录</n-button>
               </div>
-            </RouterLink>
+  
           </n-space>
         </n-layout-header>
       </n-layout>
@@ -137,5 +143,10 @@ const handleSelect = (key) => {
   } else {
     router.push(key);
   }
+
 };
+
+const loginpage = () =>{
+  router.push("login")
+}
 </script>

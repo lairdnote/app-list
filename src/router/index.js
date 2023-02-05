@@ -62,13 +62,13 @@ const router = createRouter({
           name: 'finace',
           path: 'finace',
           props: true,
-          component: () => import('../views/ProfileHomeView.vue')
+          component: () => import('../views/FinaceView.vue')
         },
         {
           name: 'order',
           path: 'order',
           props: true,
-          component: () => import('../views/ProfileHomeView.vue')
+          component: () => import('../views/OrderList.vue')
         },
       ]
     },

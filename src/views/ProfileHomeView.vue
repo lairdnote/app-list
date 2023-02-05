@@ -1,6 +1,6 @@
 
 <template>
-  <n-card title="用户基本信息" size="huge">
+  <n-card  size="huge">
     <n-space vertical>
       <n-card title="" style="margin-bottom: 16px">
         <h4>昵称:</h4>
@@ -24,6 +24,7 @@
     </n-space>
   </n-card>
 </template>
+
 <script setup>
 import { ref } from "vue";
 import { useMessage } from "naive-ui";
