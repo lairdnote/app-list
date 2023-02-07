@@ -107,7 +107,9 @@ const handleButtonClick = () => {
   background-color: rgba(0, 128, 0, 0.12);
 }
 .green {
-  height: 200px;
+  padding-top: 25px;
+  margin-top: 25px;
+  height: 150px;
   background-color: rgba(0, 128, 0, 0.24);
 }
 
