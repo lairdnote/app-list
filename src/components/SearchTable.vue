@@ -99,8 +99,9 @@ const submitSearch = () => {
       
     });
 };
-</script>>
+</script>
 
 <style>
+
 </style>
   
