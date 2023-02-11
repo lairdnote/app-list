@@ -9,7 +9,7 @@ export const useStore = defineStore('user', () => {
     const avatar = ref("")
     const nickname = ref("")
     const userId = ref("")
-    return { sign, email , token, avatar,nickname,userId}
+    return { sign, email, token, avatar, nickname, userId }
 },
     {
         persist: {

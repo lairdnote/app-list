@@ -7,21 +7,12 @@
       </n-gi>
       <n-gi :span="2">
         <n-card>
-          <n-tabs
-            class="card-tabs"
-            default-value="signin"
-            size="large"
-            animated
-            style="margin: 0 -4px"
-            pane-style="padding-left: 4px; padding-right: 4px; box-sizing: border-box;"
-          >
+          <n-tabs class="card-tabs" default-value="signin" size="large" animated style="margin: 0 -4px"
+            pane-style="padding-left: 4px; padding-right: 4px; box-sizing: border-box;">
             <n-tab-pane name="signin" tab="获取验证码登录">
               <n-form>
                 <n-form-item-row>
-                  <n-input
-                    v-model:value="inputdata"
-                    :placeholder="inputLable"
-                  />
+                  <n-input v-model:value="inputdata" :placeholder="inputLable" />
                 </n-form-item-row>
               </n-form>
 
@@ -52,10 +43,12 @@
   height: 108px;
   background-color: transparent;
 }
+
 .green {
   height: 108px;
   background-color: transparent;
 }
+
 .dv1 {
   height: 350px;
   width: 800px;

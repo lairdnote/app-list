@@ -2,34 +2,16 @@
   <div>
     <n-grid x-gap="12" :cols="5">
       <n-gi>
-        <n-select
-          placeholder="所在地"
-          v-model:value="data.country"
-          :options="localtionOptions"
-          size="medium"
-        />
+        <n-select placeholder="所在地" v-model:value="data.country" :options="localtionOptions" size="medium" />
       </n-gi>
       <n-gi>
-        <n-input
-          v-model:value="data.amount"
-          type="text"
-          placeholder="输入数量"
-        />
+        <n-input v-model:value="data.amount" type="text" placeholder="输入数量" />
       </n-gi>
       <n-gi>
-        <n-input
-          v-model:value="data.price"
-          type="text"
-          placeholder="输入单价"
-        />
+        <n-input v-model:value="data.price" type="text" placeholder="输入单价" />
       </n-gi>
       <n-gi>
-        <n-select
-          placeholder="支付方式"
-          v-model:value="data.payment"
-          :options="paymethodOptions"
-          size="medium"
-        />
+        <n-select placeholder="支付方式" v-model:value="data.payment" :options="paymethodOptions" size="medium" />
       </n-gi>
       <n-gi>
         <n-button strong secondary type="success" @click="submitSearch">
@@ -96,7 +78,7 @@ const submitSearch = () => {
 
       const querydata = res
       emitter.emit("searchdata", querydata);
-      
+
     });
 };
 </script>

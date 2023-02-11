@@ -6,53 +6,28 @@
       <n-card title="数量" style="margin-bottom: 16px">
         <h5>所有交易都是以美元计算</h5>
 
-        <n-input type="text" size="large"  
-        v-model:value="model.amount"  
-        @change="handleInputChange" 
-        />
+        <n-input type="text" size="large" v-model:value="model.amount" @change="handleInputChange" />
         <h5>购买限额是 {{ provider.limit }} 请输入这个区间</h5>
         <h4>单价</h4>
-        <n-input
-          type="text"
-          size="large"
-          :value="provider.price"
-          :disabled="true"
-          v-model:value="model.price"
-        />
+        <n-input type="text" size="large" :value="provider.price" :disabled="true" v-model:value="model.price" />
         <h4>商户所在地</h4>
-        <n-input
-          type="text"
-          size="large"
-          :value="countries[provider.country]"
-          :disabled="true"
-        />
+        <n-input type="text" size="large" :value="countries[provider.country]" :disabled="true" />
         <h4>手续费</h4>
-        <n-input
-          type="text"
-          size="large"
-          default-value="$10"
-          :disabled="true"
-        />
+        <n-input type="text" size="large" default-value="$10" :disabled="true" />
         <h4>交易总额</h4>
-        <n-input
-          type="text"
-          size="large"
-          placeholder="等待计算"
-          v-model:value="model.total"
-          :disabled="true"
-        />
-        <h5>计算方式: {{ model.amount }} * {{ model.price}} + {{ model.fee}} </h5>
+        <n-input type="text" size="large" placeholder="等待计算" v-model:value="model.total" :disabled="true" />
+        <h5>计算方式: {{ model.amount }} * {{ model.price }} + {{ model.fee }} </h5>
         <h4>支付方式</h4>
 
         <p>{{ Paymentsoptions[pay] }}</p>
       </n-card>
-      <n-button strong secondary type="success" @click="sendTransactionView" >提交</n-button>
+      <n-button strong secondary type="success" @click="sendTransactionView">提交</n-button>
     </n-space>
   </div>
 </template>
   
 <script setup>
-import { useRoute , useRouter} from "vue-router";
+import { useRoute, useRouter } from "vue-router";
 import { ref, toRaw } from "vue";
 import { storeToRefs } from "pinia";
 import { useCountryStore } from "../stores/country";
@@ -89,8 +64,8 @@ model.value.fee = 10
 
 const handleInputChange = () => {
 
-        const floatTotal = parseInt(model.value.amount) * parseFloat(model.value.price) + parseInt(model.value.fee)
-        model.value.total = String(floatTotal.toFixed(2))
+  const floatTotal = parseInt(model.value.amount) * parseFloat(model.value.price) + parseInt(model.value.fee)
+  model.value.total = String(floatTotal.toFixed(2))
 }
 
 

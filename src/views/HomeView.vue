@@ -7,13 +7,13 @@
         <n-card title="搜索" style="margin-bottom: 16px">
           <SearchTableVue :action="buyaction" />
         </n-card>
-        <DataTable ref="cleandata"/>
+        <DataTable ref="cleandata" />
       </n-tab-pane>
       <n-tab-pane name="sell" tab="出售">
         <n-card title="搜索" style="margin-bottom: 16px">
           <SearchTableVue :action="sellaction" />
         </n-card>
-        <DataTable ref="cleandata"/>
+        <DataTable ref="cleandata" />
       </n-tab-pane>
     </n-tabs>
   </n-card>

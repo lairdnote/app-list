@@ -1,14 +1,7 @@
 
 <template>
   <n-card size="huge">
-    
-
-
-    <n-data-table
-    :columns="columns"
-    :data="data"
-    :bordered="false"
-  />
+    <n-data-table :columns="columns" :data="data" :bordered="false" />
   </n-card>
 </template>
 
@@ -63,7 +56,7 @@ const data = ref([
   {
     orderid: "000012",
     tradePair: "1",
-    action:"购买",
+    action: "购买",
     amount: "1000HDO",
     price: "1.01$",
     count: "1000",
@@ -75,7 +68,7 @@ const data = ref([
   {
     orderid: "000016",
     tradePair: "1",
-    action:"购买",
+    action: "购买",
     amount: "1000HDO",
     price: "1.00$",
     count: "1000",
@@ -87,7 +80,7 @@ const data = ref([
   {
     orderid: "000015",
     tradePair: "1",
-    action:"购买",
+    action: "购买",
     amount: "1000HDO",
     price: "1.08$",
     count: "1000",
@@ -99,7 +92,7 @@ const data = ref([
   {
     orderid: "000013",
     tradePair: "2",
-    action:"出售",
+    action: "出售",
     amount: "1000HDO",
     price: "1.00$",
     count: "1000",
@@ -118,4 +111,5 @@ const data = ref([
 
 
 <style scoped>
+
 </style>

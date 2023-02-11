@@ -1,9 +1,5 @@
 <template>
-  <n-data-table
-    :columns="buycreateColumns()"
-    v-model:data="data"
-    :pagination="paginationReactive"
-  />
+  <n-data-table :columns="buycreateColumns()" v-model:data="data" :pagination="paginationReactive" />
 </template>
 <script setup>
 import { reactive, h, ref, inject, onMounted, getCurrentInstance } from "vue";

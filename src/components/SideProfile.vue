@@ -3,10 +3,7 @@
     <n-layout has-sider>
       <n-layout-sider content-style="padding: 24px;">
         <div style="height: 800px">
-          <n-menu
-            :options="menuOptions"
-            :default-expanded-keys="defaultExpandedKeys"
-          />
+          <n-menu :options="menuOptions" :default-expanded-keys="defaultExpandedKeys" />
         </div>
       </n-layout-sider>
 

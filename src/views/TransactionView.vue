@@ -7,12 +7,7 @@
         <n-step title="等待商家转账给平台">
           <div class="n-step-description">
             <p>1</p>
-            <n-button
-              v-if="current === 1"
-           
-              size="small"
-              @click="handleButtonClick"
-            >
+            <n-button v-if="current === 1" size="small" @click="handleButtonClick">
               Next
             </n-button>
           </div>
@@ -20,12 +15,7 @@
         <n-step title="询问商家收款帐号">
           <div class="n-step-description">
             <p>2</p>
-            <n-button
-              v-if="current === 2"
-         
-              size="small"
-              @click="handleButtonClick"
-            >
+            <n-button v-if="current === 2" size="small" @click="handleButtonClick">
               Next
             </n-button>
           </div>
@@ -33,12 +23,7 @@
         <n-step title="给商家付款">
           <div class="n-step-description">
             <p>3</p>
-            <n-button
-              v-if="current === 3"
-   
-              size="small"
-              @click="handleButtonClick"
-            >
+            <n-button v-if="current === 3" size="small" @click="handleButtonClick">
               Next
             </n-button>
           </div>
@@ -46,12 +31,7 @@
         <n-step title="商家确认收款">
           <div class="n-step-description">
             <p>4</p>
-            <n-button
-              v-if="current === 4"
-     
-              size="small"
-              @click="handleButtonClick"
-            >
+            <n-button v-if="current === 4" size="small" @click="handleButtonClick">
               Next
             </n-button>
           </div>
@@ -59,7 +39,7 @@
       </n-steps>
     </n-space>
     <div class="box">
-      <n-grid x-gap="24" :cols="2" >
+      <n-grid x-gap="24" :cols="2">
         <n-gi>
           <div>
             <h5>聊天信息：</h5>
@@ -67,10 +47,10 @@
             <p></p>
             <n-grid x-gap="12" :cols="2">
               <n-gi class="left">
-                <n-input type="text" placeholder="输入内容"    />
+                <n-input type="text" placeholder="输入内容" />
               </n-gi>
-              <n-gi class="right" >
-                <n-button type="info" > 提交 </n-button>
+              <n-gi class="right">
+                <n-button type="info"> 提交 </n-button>
               </n-gi>
             </n-grid>
           </div>
@@ -106,6 +86,7 @@ const handleButtonClick = () => {
   height: 200px;
   background-color: rgba(0, 128, 0, 0.12);
 }
+
 .green {
   padding-top: 25px;
   margin-top: 25px;
@@ -118,12 +99,14 @@ const handleButtonClick = () => {
   justify-items: center;
   margin: 10 auto;
 }
+
 .left {
   float: left;
   justify-items: center;
   width: 150%;
   height: 40%;
 }
+
 .right {
   float: right;
   margin-left: 55%;

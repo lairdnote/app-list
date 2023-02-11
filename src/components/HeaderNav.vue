@@ -5,53 +5,36 @@
         <n-layout-header class="box">
           <n-space class="left">
             <RouterLink to="/">
-              <n-avatar
-                size="medium"
-                src="/src/assets/big_hdo_logo.png"
-                class="logo"
-              ></n-avatar>
+              <n-avatar size="medium" src="/src/assets/big_hdo_logo.png" class="logo"></n-avatar>
             </RouterLink>
 
             <RouterLink to="/">
-              <n-button quaternary type="primary">首页</n-button></RouterLink
-            >
+              <n-button quaternary type="primary">首页</n-button>
+            </RouterLink>
 
             <RouterLink to="/ads">
-              <n-button quaternary type="primary"> 挂单 </n-button></RouterLink
-            >
+              <n-button quaternary type="primary"> 挂单 </n-button>
+            </RouterLink>
             <RouterLink to="/about">
               <n-button quaternary type="primary">
                 帮助中心
-              </n-button></RouterLink
-            >
+              </n-button>
+            </RouterLink>
           </n-space>
 
           <n-space class="right">
             <RouterLink to="/about">
-              <n-button quaternary type="primary" size="large"
-                >通知</n-button
-              ></RouterLink
-            >
+              <n-button quaternary type="primary" size="large">通知</n-button>
+            </RouterLink>
 
             <div v-if="isLogin === true">
-              <n-dropdown
-                :options="options"
-                trigger="click"
-                @select="handleSelect"
-              >
-                <n-avatar
-                  :src="avatarsrc">
+              <n-dropdown :options="options" trigger="click" @select="handleSelect">
+                <n-avatar :src="avatarsrc">
                 </n-avatar>
               </n-dropdown>
             </div>
             <div v-else>
-              <n-button
-                quaternary
-                type="primary"
-                size="large"
-                @click="loginpage"
-                >登录</n-button
-              >
+              <n-button quaternary type="primary" size="large" @click="loginpage">登录</n-button>
             </div>
           </n-space>
         </n-layout-header>
@@ -68,12 +51,14 @@
   justify-items: center;
   margin: 10 auto;
 }
+
 .left {
   float: left;
   justify-items: center;
   width: 30%;
   height: 40%;
 }
+
 .right {
   float: right;
   margin-left: 55%;
