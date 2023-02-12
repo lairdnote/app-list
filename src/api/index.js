@@ -41,6 +41,10 @@ let _service = {
     getSearchList5(data) {
         const url = baseURL + "/api/v1/guang/search1"
         return service.post(url, data, headers)
+    },
+    getTradePairList() {
+        const url = baseURL + "/api/v1/sys/tradepair/list"
+        return service.post(url, headers)
     }
 }
 
