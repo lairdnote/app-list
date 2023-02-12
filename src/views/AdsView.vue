@@ -12,7 +12,7 @@
       </n-form-item>
       <n-form-item label="所在地区">
 
-        <n-select placeholder="所在地" v-model:value="model.country" :options="localtionOptions" size="medium" />
+        <n-select placeholder="所在地" v-model:value="model.country" :options="localtionOptions" size="medium"  />
 
       </n-form-item>
       <n-form-item label="出售总量">
@@ -41,8 +41,9 @@
 </template>
 
 <script setup>
-import { ref, toRaw } from "vue";
+import { ref, toRaw , onMounted} from "vue";
 import { constStore } from "../stores/const";
+import _service from "../api/index.js"
 import { useCountryStore } from "../stores/country";
 import { storeToRefs } from "pinia";
 import { useMessage } from "naive-ui";
@@ -57,8 +58,24 @@ const countries = toRaw(country.country.value)
 const refStore = storeToRefs(constStore());
 const message = useMessage();
 const formRef = ref(null);
+const tradePairOptions = [];
 
-const tradePairtoRaw = toRaw(refStore.tradePair.value);
+onMounted(() => {
+  _service.getTradePairList().then((res) => {
+    if (res.code === 0 ){
+        res.data.forEach(pair => {
+          var trade = {}
+          trade.label = pair.name
+          trade.value = pair.id
+          tradePairOptions.push(trade)
+        });
+    }
+    console.log(tradePairOptions)
+    
+  })
+})
+
+
 const paycoin = ref("请选择币种");
 const localtionOptions = [];
 
@@ -71,14 +88,7 @@ Object.keys(countries).forEach((key) => {
 });
 
 
-const tradePairOptions = [];
-Object.keys(tradePairtoRaw).forEach((key) => {
-  console.log(key, tradePairtoRaw[key]);
-  tradePairOptions.push({
-    label: tradePairtoRaw[key],
-    value: key,
-  });
-});
+
 const paymentstoRaw = toRaw(refStore.payments.value);
 const paymethodOptions = [];
 Object.keys(paymentstoRaw).forEach((key) => {
@@ -116,7 +126,7 @@ const handleValidateClick = (e) => {
 
 const handleSelect = (e) => {
   console.log(e);
-  const action = tradePairtoRaw[e].split("/");
+  const action = tradePairOptions[e-1].label.split("/");
   paycoin.value = action[0];
 };
 </script>
