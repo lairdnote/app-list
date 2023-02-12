@@ -45,6 +45,22 @@ let _service = {
     getTradePairList() {
         const url = baseURL + "/api/v1/sys/tradepair/list"
         return service.post(url, headers)
+    },
+    OrderCancel(data){
+        const url = baseURL + "/api/v1/order/cancel"
+        return service.post(url, data, headers)
+    },
+    GuangClone(data){
+        const url = baseURL + "/api/v1/guang/clone"
+        return service.post(url, data, headers)
+    },
+    GuangDelist(data){
+        const url = baseURL + "/api/v1/guang/delist"
+        return service.post(url, data, headers)
+    },
+    GuangCheck(data){
+        const url = baseURL + "/api/v1/guang/check"
+        return service.post(url, data, headers)
     }
 }
 

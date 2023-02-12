@@ -5,7 +5,7 @@
         <n-layout-header class="box">
           <n-space class="left">
             <RouterLink to="/">
-              <n-avatar size="medium" src="/src/assets/big_hdo_logo.png" class="logo"></n-avatar>
+              <n-avatar round size="medium" src="/src/assets/big_hdo_logo.png" class="logo"></n-avatar>
             </RouterLink>
 
             <RouterLink to="/">
@@ -29,7 +29,10 @@
 
             <div v-if="isLogin === true">
               <n-dropdown :options="options" trigger="click" @select="handleSelect">
-                <n-avatar :src="avatarsrc">
+                <n-avatar
+                size="medium"
+                round
+                 :src="avatarsrc">
                 </n-avatar>
               </n-dropdown>
             </div>
@@ -61,7 +64,7 @@
 
 .right {
   float: right;
-  margin-left: 55%;
+  margin-left: 60%;
 }
 </style>
 <script setup>
