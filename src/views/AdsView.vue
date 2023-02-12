@@ -60,8 +60,8 @@ const message = useMessage();
 const formRef = ref(null);
 const tradePairOptions = [];
 
-onMounted(() => {
-  _service.getTradePairList().then((res) => {
+onMounted(async () => {
+  await _service.getTradePairList().then((res) => {
     if (res.code === 0 ){
         res.data.forEach(pair => {
           var trade = {}
@@ -101,7 +101,7 @@ Object.keys(paymentstoRaw).forEach((key) => {
 const size = ref("medium");
 const model = ref({
   tradePair: "",
-  amount: "",
+  total: "",
   price: "",
   payment: "",
   country: "",
@@ -116,6 +116,7 @@ const handleValidateClick = (e) => {
   e.preventDefault();
   formRef.value?.validate((errors) => {
     if (!errors) {
+      console.log(model.value)
       message.success("Valid");
     } else {
       console.log(errors);
