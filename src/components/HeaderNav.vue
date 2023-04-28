@@ -12,17 +12,14 @@
             <RouterLink to="/app">
               <n-button quaternary type="primary">App</n-button>
             </RouterLink>
-            <RouterLink to="/导航">
+            <RouterLink to="/">
               <n-button quaternary type="primary">
-                帮助中心
+                导航
               </n-button>
             </RouterLink>
           </n-space>
 
           <n-space class="right">
-            <RouterLink to="/about">
-              <n-button quaternary type="primary" size="large">通知</n-button>
-            </RouterLink>
 
             <div v-if="isLogin === true">
               <n-dropdown :options="options" trigger="click" @select="handleSelect">

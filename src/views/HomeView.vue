@@ -5,13 +5,13 @@
 
       <n-tab-pane name="buy" tab="购买">
         <n-card title="搜索" style="margin-bottom: 16px">
-          <SearchTableVue :action="buyaction" />
+
         </n-card>
 
       </n-tab-pane>
       <n-tab-pane name="sell" tab="出售">
         <n-card title="搜索" style="margin-bottom: 16px">
-          <SearchTableVue :action="sellaction" />
+    
         </n-card>
 
       </n-tab-pane>

@@ -23,7 +23,7 @@ const router = createRouter({
           path: '/app',
           name: 'app',
           props: true,
-          component: () => import('../views/TradeView.vue')
+          component: () => import('../views/AboutView.vue')
         }
         
       ]
