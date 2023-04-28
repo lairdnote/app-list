@@ -7,21 +7,20 @@
         <n-card title="搜索" style="margin-bottom: 16px">
           <SearchTableVue :action="buyaction" />
         </n-card>
-        <DataTable ref="cleandata" />
+
       </n-tab-pane>
       <n-tab-pane name="sell" tab="出售">
         <n-card title="搜索" style="margin-bottom: 16px">
           <SearchTableVue :action="sellaction" />
         </n-card>
-        <DataTable ref="cleandata" />
+
       </n-tab-pane>
     </n-tabs>
   </n-card>
 </template>
 
 <script setup>
-import DataTable from "../components/DataTable.vue";
-import SearchTableVue from "../components/SearchTable.vue";
+
 
 import { ref, inject, toRaw } from "vue";
 const buyaction = ref("buy");

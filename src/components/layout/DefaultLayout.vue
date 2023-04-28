@@ -3,7 +3,9 @@
  
       <HeaderNav />
       <n-message-provider>
-      <SideCoin />
+        <n-layout-content content-style="padding: 24px;">
+          <RouterView />
+        </n-layout-content>
       
       <Footer />
     </n-message-provider>
@@ -14,7 +16,7 @@
   import { RouterLink, RouterView } from "vue-router";
   import { NConfigProvider, darkTheme } from 'naive-ui'
   import HeaderNav from "../../components/HeaderNav.vue";
-  import SideCoin from "../../components/SideCoin.vue";
+  
   import Footer from "../../components/Footer.vue";
   
   

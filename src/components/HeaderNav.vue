@@ -4,18 +4,15 @@
       <n-layout has-sider content-style="padding: 24px;">
         <n-layout-header class="box">
           <n-space class="left">
-            <RouterLink to="/">
-              <n-avatar round size="medium" src="/src/assets/big_hdo_logo.png" class="logo"></n-avatar>
-            </RouterLink>
 
             <RouterLink to="/">
               <n-button quaternary type="primary">首页</n-button>
             </RouterLink>
 
-            <RouterLink to="/ads">
-              <n-button quaternary type="primary"> 挂单 </n-button>
+            <RouterLink to="/app">
+              <n-button quaternary type="primary">App</n-button>
             </RouterLink>
-            <RouterLink to="/about">
+            <RouterLink to="/导航">
               <n-button quaternary type="primary">
                 帮助中心
               </n-button>

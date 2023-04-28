@@ -20,25 +20,12 @@ const router = createRouter({
           component: () => import('../views/AboutView.vue')
         },
         {
-          path: '/trade',
-          name: 'trade',
+          path: '/app',
+          name: 'app',
           props: true,
           component: () => import('../views/TradeView.vue')
         }
-        ,
-        {
-          path: '/transaction',
-          name: 'transaction',
-          props: true,
-          component: () => import('../views/TransactionView.vue')
-        }
-        ,
-        {
-          path: '/ads',
-          name: 'ads',
-          props: true,
-          component: () => import('../views/AdsView.vue')
-        }
+        
       ]
     },
     {
@@ -47,31 +34,7 @@ const router = createRouter({
       props: true,
       component: () => import('../views/LoginView.vue')
     },
-    {
-      path: '/profile',
-      name: 'profile',
-      component: () => import('../components/layout/ProfileLayout.vue'),
-      children: [
-        {
-          name: 'user',
-          path: 'user',
-          props: true,
-          component: () => import('../views/ProfileHomeView.vue')
-        },
-        {
-          name: 'finace',
-          path: 'finace',
-          props: true,
-          component: () => import('../views/FinaceView.vue')
-        },
-        {
-          name: 'order',
-          path: 'order',
-          props: true,
-          component: () => import('../views/OrderList.vue')
-        },
-      ]
-    },
+ 
 
   ]
 })
